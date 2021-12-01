@@ -3,11 +3,12 @@
 count = 0
 
 f = open("input.txt", "r")
-prev = 10_000
+prev = int(f.readline())
 for x in f:
-    print(f'current: {x}')
-    if int(x) > prev:
+    #print(f'current: {x}')
+    x = int(x)
+    if x > prev:
         count +=1
-    prev = int(x)
+    prev = x
 
 print(f'increase: {count}')
