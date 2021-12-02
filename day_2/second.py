@@ -8,22 +8,21 @@ aim = 0
 #f = open("test.txt", "r") # sol:900
 f = open("input.txt", "r")
 
-fw = re.compile('forward (\d+)')
-up = re.compile('up (\d+)')
-down = re.compile('down (\d+)')
+pattern = re.compile('(\w+) (\d+)')
 
-for x in f:
-    if fw.match(x):
-        tmp = fw.search(x)
-        forward += int(tmp.group(1))
-        depth += aim * int(tmp.group(1))
-    elif up.search(x):
-        tmp = up.search(x)
-        aim -= int(tmp.group(1))
-    elif down.search(x):
-        tmp = down.search(x)
-        aim += int(tmp.group(1))
+for line in f:
+    match = pattern.search(line)
+    command = match.group(1)
+    x = int(match.group(2))
+
+    if command == 'forward':
+        forward += x
+        depth += aim * x
+    elif command == 'up':
+        aim -= x
+    elif command == 'down':
+        aim += x
     else:
-        print(f'unknow line "{x}"')
+        print(f'unknow command "{command}"')
 
 print(f'result: {forward * depth}')
