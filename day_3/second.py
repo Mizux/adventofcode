@@ -52,7 +52,7 @@ with open(FILE, 'r') as f:
     for line in f:
         input_list.append(int(line, base=2))
 
-    # Find oxygen
+    # Find Oxygen
     oxygen = 0
     filter_list = input_list.copy()
     for i in reversed(range(WORD_SIZE)):
@@ -66,7 +66,7 @@ with open(FILE, 'r') as f:
             break
     print(f'oxygen: {oxygen}')
 
-    # Find oxygen
+    # Find CO2
     co2 = 0
     filter_list = input_list.copy()
     for i in reversed(range(WORD_SIZE)):
