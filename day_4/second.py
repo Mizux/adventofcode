@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-BOARD_SIZE=5
+BOARD_SIZE = 5
 SENTINEL = -1
 #FILE='test.txt' # sol: 148 * 13 = 1924
 FILE='input.txt' # sol: 6 * 214 = 1284
@@ -74,10 +74,10 @@ def grid_sum(grid):
 [numbers, boards] = parse_input(FILE)
 for number in numbers:
     remove_number(boards, number)
-    # only check bingo for remaining grid
     for grid in boards:
         has_bingo = check_grid(grid)
         if has_bingo:
+            # only check bingo for remaining grid
             boards.remove(grid)
             # if we just finish the last grid return the result !
             if len(boards) == 0:

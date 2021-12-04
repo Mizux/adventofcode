@@ -73,7 +73,6 @@ def grid_sum(grid):
 
 [numbers, boards] = parse_input(FILE)
 for number in numbers:
-    #print(f'number: {number}')
     remove_number(boards, number)
     for grid in boards:
         has_bingo = check_grid(grid)
