@@ -4,47 +4,65 @@ BOARD_SIZE=5
 #FILE='test.txt' # sol: 188*24=4512
 FILE='input.txt' # sol: 11536
 
-number_list = []
-bingo_grids = []
+def parse_input(file):
+    with open(file, 'r') as f:
+        numbers = [int(i) for i in f.readline().rstrip().split(',')]
+        f.readline() #  ignore first empty line
 
-def remove_number(nb):
-    for grid in range(len(bingo_grids)):
+        boards = []
+        grid = []
+        for line in f:
+            line = line.rstrip()
+            if line == '': # grids are separated by empty line
+                boards.append(grid)
+                grid = []
+                continue
+            tmp = [int(i) for i in line.split()]
+            assert len(tmp) == BOARD_SIZE
+            grid.append(tmp)
+        boards.append(grid) # don't forget to add last grid
+    #print(f'numbers: {numbers}')
+    #print(f'boards: {boards}')
+    return [numbers, boards]
+
+
+def remove_number(boards, nb):
+    for grid in boards:
         for row in range(BOARD_SIZE):
             for col in range(BOARD_SIZE):
-                if bingo_grids[grid][row][col] == nb:
-                    bingo_grids[grid][row][col] = -1
+                if grid[row][col] == nb:
+                    grid[row][col] = -1
 
 
-def check_bingo():
-    for grid in range(len(bingo_grids)):
+def check_boards(boards):
+    for idx, grid in enumerate(boards):
         #print(f'check grid: {grid}')
-        # check horizontal
+        # check horizontal bingo
         for row in range(BOARD_SIZE):
             found = True
             for col in range(BOARD_SIZE):
-                value = bingo_grids[grid][row][col]
+                value = grid[row][col]
                 #print(f'check value[{row},{col}]: {value}')
                 if value != -1:
                     found = False
                     break
             if found:
-                return [found, grid]
-        # check vertical
+                return [found, idx]
+        # check vertical bingo
         for col in range(BOARD_SIZE):
             found = True
             for row in range(BOARD_SIZE):
-                value = bingo_grids[grid][row][col]
+                value = grid[row][col]
                 #print(f'check value[{row},{col}]: {value}')
                 if value != -1:
                     found = False
                     break
             if found:
-                return [found, grid]
-    return [False, -1]
+                return [found, idx]
+    return [False, None]
 
 
-def get_unmarked_sum(grid_idx):
-    grid = bingo_grids[grid_idx]
+def grid_sum(grid):
     grid_sum = 0
     for row in range(BOARD_SIZE):
         for col in range(BOARD_SIZE):
@@ -53,40 +71,12 @@ def get_unmarked_sum(grid_idx):
     return grid_sum
 
 
-with open(FILE, 'r') as f:
-    number_list = [int(i) for i in f.readline().rstrip().split(',')]
-    #print(f'numbers: {number_list}')
-
-    grid = []
-    row=0
-    for line in f:
-        line = line.rstrip()
-        #print(f'line: {line}')
-        if line == '':
-            #print('empty')
-            continue
-        tmp = [int(i) for i in line.split()]
-        assert len(tmp) == BOARD_SIZE
-        grid.append(tmp)
-        row += 1
-        if row == BOARD_SIZE:
-            row = 0
-            bingo_grids.append(grid)
-            grid = []
-    #print(f'bingo {bingo_grids}')
-
-
-total = 0
-val = 0
-for number in number_list:
+[numbers, boards] = parse_input(FILE)
+for number in numbers:
     #print(f'number: {number}')
-    remove_number(number)
-    res = check_bingo()
-
+    remove_number(boards, number)
+    res = check_boards(boards)
     if res[0]:
-        total = get_unmarked_sum(res[1])
-        val = number
-        break
-
-print(f'result: {total * val}')
-#print(f'bingo {bingo_grids}')
+        total = grid_sum(boards[res[1]])
+        print(f'result: {number * total}')
+        exit(0)
