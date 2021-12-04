@@ -10,26 +10,26 @@ def parse_input(file):
         numbers = [int(i) for i in f.readline().rstrip().split(',')]
         f.readline() #  ignore first empty line
 
-        boards = []
+        grids = []
         grid = []
         for line in f:
             line = line.rstrip()
             if line == '': # grids are separated by empty line
                 assert len(grid) == BOARD_SIZE
-                boards.append(grid)
+                grids.append(grid)
                 grid = []
                 continue
             tmp = [int(i) for i in line.split()]
             assert len(tmp) == BOARD_SIZE
             grid.append(tmp)
-        boards.append(grid) # don't forget to add last grid
+        grids.append(grid) # don't forget to add last grid
     #print(f'numbers: {numbers}')
-    #print(f'boards: {boards}')
-    return [numbers, boards]
+    #print(f'grids: {grids}')
+    return [numbers, grids]
 
 
-def remove_number(boards, nb):
-    for grid in boards:
+def remove_number(grids, nb):
+    for grid in grids:
         for row in range(BOARD_SIZE):
             for col in range(BOARD_SIZE):
                 if grid[row][col] == nb:
@@ -71,10 +71,10 @@ def grid_sum(grid):
     return grid_sum
 
 
-[numbers, boards] = parse_input(FILE)
+[numbers, grids] = parse_input(FILE)
 for number in numbers:
-    remove_number(boards, number)
-    for grid in boards:
+    remove_number(grids, number)
+    for grid in grids:
         has_bingo = check_grid(grid)
         if has_bingo:
             total = grid_sum(grid)
