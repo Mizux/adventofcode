@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
 BOARD_SIZE=5
-#FILE='test.txt' # sol: 188*24=4512
-FILE='input.txt' # sol: 11536
+#FILE='test.txt' # sol: 148 * 13 = 1924
+FILE='input.txt' # sol:
 
 number_list = []
 bingo_grids = []
+remaining_grid = []
 
 def remove_number(nb):
     for grid in range(len(bingo_grids)):
@@ -15,31 +16,30 @@ def remove_number(nb):
                     bingo_grids[grid][row][col] = -1
 
 
-def check_bingo():
-    for grid in range(len(bingo_grids)):
-        #print(f'check grid: {grid}')
-        # check horizontal
-        for row in range(BOARD_SIZE):
-            found = True
-            for col in range(BOARD_SIZE):
-                value = bingo_grids[grid][row][col]
-                #print(f'check value[{row},{col}]: {value}')
-                if value != -1:
-                    found = False
-                    break
-            if found:
-                return [found, grid]
-        # check vertical
+def check_bingo(grid_idx):
+    #print(f'check grid: {grid}')
+    # check horizontal
+    for row in range(BOARD_SIZE):
+        found = True
         for col in range(BOARD_SIZE):
-            found = True
-            for row in range(BOARD_SIZE):
-                value = bingo_grids[grid][row][col]
-                #print(f'check value[{row},{col}]: {value}')
-                if value != -1:
-                    found = False
-                    break
-            if found:
-                return [found, grid]
+            value = bingo_grids[grid_idx][row][col]
+            #print(f'check value[{row},{col}]: {value}')
+            if value != -1:
+                found = False
+                break
+        if found:
+            return [found, grid_idx]
+    # check vertical
+    for col in range(BOARD_SIZE):
+        found = True
+        for row in range(BOARD_SIZE):
+            value = bingo_grids[grid_idx][row][col]
+            #print(f'check value[{row},{col}]: {value}')
+            if value != -1:
+                found = False
+                break
+        if found:
+            return [found, grid_idx]
     return [False, -1]
 
 
@@ -75,18 +75,25 @@ with open(FILE, 'r') as f:
             grid = []
     #print(f'bingo {bingo_grids}')
 
+    remaining_grid = [i for i in range(len(bingo_grids))]
+    #print(f'remaining {remaining_grid}')
 
 total = 0
 val = 0
 for number in number_list:
     #print(f'number: {number}')
     remove_number(number)
-    res = check_bingo()
 
-    if res[0]:
-        total = get_unmarked_sum(res[1])
-        val = number
-        break
+    # only check bingo for remaining grid
+    for grid_idx in remaining_grid:
+        res = check_bingo(grid_idx)
+        if res[0]:
+            remaining_grid.remove(grid_idx)
+            # if we just finish the last grid return the result !
+            if len(remaining_grid) == 0:
+                total = get_unmarked_sum(res[1])
+                val = number
+                break;
 
 print(f'result: {total * val}')
 #print(f'bingo {bingo_grids}')
