@@ -30,18 +30,17 @@ def parse_input(file):
 
 def remove_number(grids, nb):
     for grid in grids:
-        for row in range(BOARD_SIZE):
+        for row in grid:
             for col in range(BOARD_SIZE):
-                if grid[row][col] == nb:
-                    grid[row][col] = SENTINEL
+                if row[col] == nb:
+                    row[col] = SENTINEL
 
 
 def check_grid(grid):
     # check horizontal bingo
-    for row in range(BOARD_SIZE):
+    for row in grid:
         found = True
-        for col in range(BOARD_SIZE):
-            value = grid[row][col]
+        for value in row:
             #print(f'check value[{row},{col}]: {value}')
             if value != SENTINEL:
                 found = False
@@ -64,10 +63,10 @@ def check_grid(grid):
 
 def grid_sum(grid):
     grid_sum = 0
-    for row in range(BOARD_SIZE):
-        for col in range(BOARD_SIZE):
-            if grid[row][col] != SENTINEL:
-                grid_sum += grid[row][col]
+    for row in grid:
+        for value in row:
+            if value != SENTINEL:
+                grid_sum += value
     return grid_sum
 
 
@@ -77,6 +76,9 @@ for number in numbers:
     for grid in grids:
         has_bingo = check_grid(grid)
         if has_bingo:
+            #print(number)
+            #print(grid)
+            #print(total)
             total = grid_sum(grid)
             print(f'result: {number * total}')
             exit(0)
