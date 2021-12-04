@@ -15,6 +15,7 @@ def parse_input(file):
         for line in f:
             line = line.rstrip()
             if line == '': # grids are separated by empty line
+                assert len(grid) == BOARD_SIZE
                 boards.append(grid)
                 grid = []
                 continue
