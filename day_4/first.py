@@ -34,32 +34,30 @@ def remove_number(boards, nb):
                     grid[row][col] = -1
 
 
-def check_boards(boards):
-    for idx, grid in enumerate(boards):
-        #print(f'check grid: {grid}')
-        # check horizontal bingo
-        for row in range(BOARD_SIZE):
-            found = True
-            for col in range(BOARD_SIZE):
-                value = grid[row][col]
-                #print(f'check value[{row},{col}]: {value}')
-                if value != -1:
-                    found = False
-                    break
-            if found:
-                return [found, idx]
-        # check vertical bingo
+def check_grid(grid):
+    # check horizontal bingo
+    for row in range(BOARD_SIZE):
+        found = True
         for col in range(BOARD_SIZE):
-            found = True
-            for row in range(BOARD_SIZE):
-                value = grid[row][col]
-                #print(f'check value[{row},{col}]: {value}')
-                if value != -1:
-                    found = False
-                    break
-            if found:
-                return [found, idx]
-    return [False, None]
+            value = grid[row][col]
+            #print(f'check value[{row},{col}]: {value}')
+            if value != -1:
+                found = False
+                break
+        if found:
+            return True
+    # check vertical bingo
+    for col in range(BOARD_SIZE):
+        found = True
+        for row in range(BOARD_SIZE):
+            value = grid[row][col]
+            #print(f'check value[{row},{col}]: {value}')
+            if value != -1:
+                found = False
+                break
+        if found:
+            return True
+    return False
 
 
 def grid_sum(grid):
@@ -75,8 +73,9 @@ def grid_sum(grid):
 for number in numbers:
     #print(f'number: {number}')
     remove_number(boards, number)
-    res = check_boards(boards)
-    if res[0]:
-        total = grid_sum(boards[res[1]])
-        print(f'result: {number * total}')
-        exit(0)
+    for grid in boards:
+        has_bingo = check_grid(grid)
+        if has_bingo:
+            total = grid_sum(grid)
+            print(f'result: {number * total}')
+            exit(0)
