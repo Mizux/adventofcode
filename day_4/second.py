@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 BOARD_SIZE=5
+SENTINEL = -1
 #FILE='test.txt' # sol: 148 * 13 = 1924
 FILE='input.txt' # sol: 6 * 214 = 1284
 
@@ -31,7 +32,7 @@ def remove_number(boards, nb):
         for row in range(BOARD_SIZE):
             for col in range(BOARD_SIZE):
                 if grid[row][col] == nb:
-                    grid[row][col] = -1
+                    grid[row][col] = SENTINEL
 
 
 def check_grid(grid):
@@ -41,7 +42,7 @@ def check_grid(grid):
         for col in range(BOARD_SIZE):
             value = grid[row][col]
             #print(f'check value[{row},{col}]: {value}')
-            if value != -1:
+            if value != SENTINEL:
                 found = False
                 break
         if found:
@@ -52,7 +53,7 @@ def check_grid(grid):
         for row in range(BOARD_SIZE):
             value = grid[row][col]
             #print(f'check value[{row},{col}]: {value}')
-            if value != -1:
+            if value != SENTINEL:
                 found = False
                 break
         if found:
@@ -64,7 +65,7 @@ def grid_sum(grid):
     grid_sum = 0
     for row in range(BOARD_SIZE):
         for col in range(BOARD_SIZE):
-            if grid[row][col] != -1:
+            if grid[row][col] != SENTINEL:
                 grid_sum += grid[row][col]
     return grid_sum
 
