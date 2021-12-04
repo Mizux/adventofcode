@@ -72,7 +72,6 @@ def grid_sum(grid):
 
 
 [numbers, boards] = parse_input(FILE)
-found = False
 for number in numbers:
     remove_number(boards, number)
     # only check bingo for remaining grid
