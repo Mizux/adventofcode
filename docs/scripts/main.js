@@ -41,7 +41,7 @@ let colorGUI = gui.addFolder("Color");
 }
 let paramsGUI = gui.addFolder("Params");
 {
-  paramsGUI.add(param, "sleep", 100, 5000, 100);
+  paramsGUI.add(param, "sleep", 0, 4000, 50);
   //paramsGUI.open();
 }
 gui.close();
