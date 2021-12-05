@@ -656,8 +656,11 @@ class DATA {
     };
     for (let row = 0; row < board.length; ++row) {
       for (let col = 0; col < board[0].length; ++col) {
-        if (board[row][col].value === '-1') {
+        let value = board[row][col].value;
+        if (value === 'marked') {
           ctx.fillStyle = color.marked;
+        } else if (value === 'bingo') {
+          ctx.fillStyle = color.bingo;
         } else {
           ctx.fillStyle = color.fg;
         }
@@ -675,10 +678,53 @@ class DATA {
       board.forEach((row) => {
         row.forEach((cell) => {
           if (cell.value === num) {
-            cell.value = '-1';
+            cell.value = 'marked';
           }
         });
       });
     });
+  }
+
+  checkBingo() {
+    this.boards.forEach((board) => {
+      this.checkBoard(board);
+    });
+  }
+
+  checkBoard(board) {
+    // check horizontal
+    for (let row = 0; row < board.length; ++row) {
+      let bingo = true;
+      for (let col = 0; col < board[row].length; ++col) {
+        let value = board[row][col].value;
+        if (value !== 'marked') {
+          bingo = false;
+          break;
+        }
+        if (bingo) {
+          console.log("bingo!");
+          for (let col = 0; col < board[row].length; ++col) {
+            board[row][col].value = 'bingo';
+          }
+        }
+      }
+    }
+    // check vertical
+    for (let col = 0; col < board[0].length; ++col) {
+      let bingo = true;
+      for (let row = 0; row < board.length; ++row) {
+        let value = board[row][col].value;
+        if (value !== 'marked') {
+          bingo = false;
+          break;
+        }
+      }
+      if (bingo) {
+        console.log("bingo!");
+        for (let row = 0; row < board[0].length; ++row) {
+          board[row][col].value = 'bingo';
+        }
+      }
+    }
   }
 }

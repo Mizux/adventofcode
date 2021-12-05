@@ -4,6 +4,7 @@ let color = {
   bg: "#000",
   fg: "#111",
   marked: "#DDD",
+  bingo: "#0F0",
   stroke: "#FFF",
   alpha: 1.0,
 };
@@ -30,10 +31,11 @@ let gui = new dat.GUI({ load: JSON });
 gui.add(color, "data", /*min=*/ 0, /*max=*/ 0, /*step=*/ 1);
 let colorGUI = gui.addFolder("Color");
 {
+  colorGUI.addColor(color, "bg");
   colorGUI.addColor(color, "fg");
   colorGUI.addColor(color, "marked");
+  colorGUI.addColor(color, "bingo");
   colorGUI.addColor(color, "stroke");
-  colorGUI.addColor(color, "bg");
   colorGUI.add(color, "alpha", 0.25, 1.0, 0.125);
   //colorGUI.open();
 }
@@ -58,6 +60,7 @@ async function update() {
   ctx.canvas.height = window.innerHeight;
 
   drawBG(ctx, color);
+  data.checkBingo();
   data.drawBoards(ctx, color);
 
   // Remove next number or reset the board
