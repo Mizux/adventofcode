@@ -5,10 +5,9 @@ from collections import defaultdict
 FILE='test.txt' # sol: 5
 FILE='input.txt' # sol: 3990
 
-pattern = re.compile('(\d+),(\d+) -> (\d+),(\d+)')
-
 def parse_input(file):
     with open(file, 'r') as f:
+        pattern = re.compile('(\d+),(\d+) -> (\d+),(\d+)')
         values = []
         for line in f:
             match = pattern.search(line)
@@ -19,8 +18,7 @@ def parse_input(file):
 values = parse_input(FILE)
 #print(values)
 wind = defaultdict(int)
-for value in values:
-    [x1, y1, x2, y2] = value
+for [x1, y1, x2, y2] in values:
     #print(f'{x1},{y1} -> {x2},{y2}')
 
     if x1 == x2:
@@ -39,7 +37,7 @@ for value in values:
 
 #print(wind)
 count = 0
-for key, value in wind.items():
+for _, value in wind.items():
     #print(key, value)
     if value > 1:
         count += 1
