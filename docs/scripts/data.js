@@ -701,11 +701,11 @@ class DATA {
           bingo = false;
           break;
         }
-        if (bingo) {
-          console.log("bingo!");
-          for (let col = 0; col < board[row].length; ++col) {
-            board[row][col].value = 'bingo';
-          }
+      }
+      if (bingo) {
+        console.log("bingo!");
+        for (let col = 0; col < board[row].length; ++col) {
+          board[row][col].value = 'bingo';
         }
       }
     }
