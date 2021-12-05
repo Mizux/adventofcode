@@ -4,7 +4,7 @@ let color = {
   bg: "#000",
   fg: "#111",
   marked: "#DDD",
-  bingo: "#0F0",
+  bingo: "#001F3F",
   stroke: "#FFF",
   alpha: 1.0,
 };
