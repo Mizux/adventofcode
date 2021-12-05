@@ -1,5 +1,5 @@
 # adventofcode
 My shit for https://adventofcode.com/2021
 
-animation for Dat 4: https://mizux.github.io/adventofcode/
-src in [docs](docs)
+Bingo animation for Day 4: https://mizux.github.io/adventofcode/<br>
+src: see [docs](docs)
