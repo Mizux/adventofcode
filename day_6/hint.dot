@@ -14,8 +14,6 @@ digraph Hint {
   SEVEN [label="7"];
   EIGHT [label="8"];
 
-  ROOT -> EIGHT;
-  ROOT -> SIX;
   EIGHT -> SEVEN;
   SEVEN -> SIX;
   SIX -> FIVE;
@@ -24,5 +22,7 @@ digraph Hint {
   THREE -> TWO;
   TWO -> ONE;
   ONE -> ROOT;
+  EIGHT -> ROOT [dir=back; label="breed"];
+  SIX -> ROOT [dir=back; label="reset"];
 }
 @enddot
