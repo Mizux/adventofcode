@@ -1,0 +1,28 @@
+@startdot
+digraph Hint {
+  //rankdir=BT;
+  //rankdir=TD;
+  rankdir=LR;
+  node [shape=cylinder, style="rounded,filled", color=black, fillcolor=royalblue];
+  ROOT [label="0"];
+  ONE [label="1"];
+  TWO [label="2"];
+  THREE [label="3"];
+  FOUR [label="4"];
+  FIVE [label="5"];
+  SIX [label="6"];
+  SEVEN [label="7"];
+  EIGHT [label="8"];
+
+  ROOT -> EIGHT;
+  ROOT -> SIX;
+  EIGHT -> SEVEN;
+  SEVEN -> SIX;
+  SIX -> FIVE;
+  FIVE -> FOUR;
+  FOUR -> THREE;
+  THREE -> TWO;
+  TWO -> ONE;
+  ONE -> ROOT;
+}
+@enddot
