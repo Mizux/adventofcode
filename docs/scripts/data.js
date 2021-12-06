@@ -1,3 +1,4 @@
+// depend on input.js to get RAW_DATA global
 class DATA {
   constructor() {
     this.loto = [];
@@ -6,39 +7,69 @@ class DATA {
 
   initNumbers() {
     // Doesn't work since null origin is forbidden by cors
-    // when opening index.html
-    //fetch("scripts/input.txt")
-    //  .then(response => response.text())
-    //  .then(data => {
-    //    console.log(data);
-    //    this.loto = data.split("\n\n", 1).split(",").map(Number);
-    //  })
-    //  .catch(error => console.error(error));
+    // when opening file:index.html in a browser (server-less)
+    fetch("scripts/input.txt")
+      .then(response => response.text())
+      .then(data => {
+        //console.log(data);
+        this.loto = data
+          .split("\n\n", 1)[0]
+          .split(",")
+          .map(Number);
+      })
+      .catch(error => console.error(error));
 
     //console.log(RAW_DATA);
-    this.loto = RAW_DATA
-      .split("\n\n", 1)[0]
-      .split(",")
-      .map(Number);
+    //this.loto = RAW_DATA
+    //  .split("\n\n", 1)[0]
+    //  .split(",")
+    //  .map(Number);
     //console.log({ loto: this.loto });
   }
 
   initBoards() {
-    this.boards = RAW_DATA
-      .slice(RAW_DATA.indexOf("\n\n")+2) // ignore the number list
-      .split("\n\n") // split boards
-      .map((board) => {
-        return board
-          .split("\n") // split rows
-          .map((row) => {
-            return row
-              .trim()
-              .split(/\s+/) // split numbers
-              .map((value) => {
-                return { value: Number(value)}
+    // Doesn't work since null origin is forbidden by cors
+    // when opening file:index.html in a browser (server-less)
+    fetch("scripts/input.txt")
+      .then(response => response.text())
+      .then(data => {
+        //console.log(data);
+        this.boards = data
+          .slice(data.indexOf("\n\n")+2) // ignore the number list
+          .trim()
+          .split("\n\n") // split boards
+          .map((board) => {
+            return board
+              .split("\n") // split rows
+              .map((row) => {
+                return row
+                  .trim()
+                  .split(/\s+/) // split numbers
+                  .map((value) => {
+                    return { value: Number(value)}
+                  });
               });
           });
-      });
+      })
+      .catch(error => console.error(error));
+
+
+    //console.log(RAW_DATA);
+    //this.boards = RAW_DATA
+    //  .slice(RAW_DATA.indexOf("\n\n")+2) // ignore the number list
+    //  .split("\n\n") // split boards
+    //  .map((board) => {
+    //    return board
+    //      .split("\n") // split rows
+    //      .map((row) => {
+    //        return row
+    //          .trim()
+    //          .split(/\s+/) // split numbers
+    //          .map((value) => {
+    //            return { value: Number(value)}
+    //          });
+    //      });
+    //  });
     //console.log({ boards: this.boards });
   }
 
