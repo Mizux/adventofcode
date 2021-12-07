@@ -14,10 +14,16 @@ def minmax(it):
     return min, max
 
 
+def arithmetic_series(start, stop, step=1):
+    number_of_terms = (stop - start) // step
+    sum_of_extrema = start + (stop - step)
+    return number_of_terms * sum_of_extrema // 2
+
+
 def get_cost(it, target):
     cost = 0
     for val in it:
-        cost += sum(range(abs(val - target)+1))
+        cost += arithmetic_series(0, abs(val - target)+1)
     return cost
 
 
