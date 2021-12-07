@@ -14,7 +14,7 @@ def minmax(it):
     return min, max
 
 
-def count_cost(it, target):
+def get_cost(it, target):
     cost = 0
     for val in it:
         cost += sum(range(abs(val - target)+1))
@@ -36,14 +36,14 @@ numbers = parse_input(FILE)
 mean = stat.mean(numbers)
 print(f'mean: {mean}')
 target = int(mean)
-min_cost = count_cost(numbers, target)
+min_cost = get_cost(numbers, target)
 print(f'result: target:{target} fuel:{min_cost}')
 
 # MEDIAN
 median = stat.median(numbers)
 print(f'median: {median}')
 target = int(median)
-min_cost = count_cost(numbers, target)
+min_cost = get_cost(numbers, target)
 print(f'result: target:{target} fuel:{min_cost}')
 
 # BRUTE FORCE
@@ -52,7 +52,7 @@ print(f'result: target:{target} fuel:{min_cost}')
 #target = mi
 #min_cost = len(numbers) * sum(range(ma+1))
 #for i in range(mi, ma+1):
-#    c = count_cost(numbers, i)
+#    c = get_cost(numbers, i)
 #    print(f'cost({i}): {c}')
 #    if c < min_cost:
 #        target = i
