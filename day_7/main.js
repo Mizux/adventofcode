@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-require('./input.js');
+//require('./input.js');
+import {INPUT} from './input.js';
 
 const yourCleverSolution = (input) => {
   //input = "16,1,2,0,4,2,7,1,2,14";
