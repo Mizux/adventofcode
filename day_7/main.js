@@ -5,10 +5,7 @@ const yourCleverSolution = (input) => {
   const max = crabs.reduce((acc, v) => (v > acc ? v : acc), 0);
   const resultat = { pos: 0, fuel: Infinity };
   for (let i = 1; i <= max; i++) {
-    const currentPosFuel = crabs.reduce((fuel, crabPosition) => {
-      let neededFuel = crabPosition - i;
-      return (fuel += Math.abs(neededFuel));
-    }, 0);
+    const currentPosFuel = crabs.reduce((fuel, pos) => fuel + Math.abs(pos -i), 0);
     if (currentPosFuel < resultat.fuel) {
       resultat.fuel = currentPosFuel;
       resultat.pos = i;
