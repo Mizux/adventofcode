@@ -2,7 +2,7 @@
 import statistics as stat
 
 FILE='test.txt' # sol: 37
-FILE='input.txt' # sol:
+FILE='input.txt' # sol: 348664
 
 def minmax(it):
     min = max = None
