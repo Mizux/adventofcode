@@ -2,7 +2,7 @@
 import re
 
 FILE='test.txt' # sol: 168
-FILE='input.txt' # sol:
+FILE='input.txt' # sol: 100220525
 
 def minmax(it):
     min = max = None
