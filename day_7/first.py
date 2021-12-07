@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import re
+import statistics as stat
 
 FILE='test.txt' # sol: 37
 FILE='input.txt' # sol:
@@ -18,6 +18,7 @@ def count_cost(it, pos):
     cost = 0
     for val in it:
         cost += abs(val - pos)
+        #cost += sum(range(abs(val - pos)+1))
     return cost
 
 
@@ -25,22 +26,15 @@ def count_cost(it, pos):
 def parse_input(file):
     with open(file, 'r') as f:
         k = f.readline().rstrip()
-        print(f'initial state: {k}')
+        #print(f'initial state: {k}')
         numbers = [int(i) for i in k.split(',')]
     return numbers
 
 
 numbers = parse_input(FILE)
-mi, ma = minmax(numbers)
-print(f'min: {mi}, max {ma}')
+median = stat.median(numbers)
+print(f'median: {median}')
 
-min_idx = mi
-min_cost = len(numbers) * ma
-
-for i in range(mi, ma+1):
-    c = count_cost(numbers, i)
-    print(f'cost({i}): {c}')
-    if c < min_cost:
-        min_idx = i
-        min_cost = c
+min_idx = median
+min_cost = count_cost(numbers, int(median))
 print(f'result {min_cost}')
