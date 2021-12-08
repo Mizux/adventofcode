@@ -16,4 +16,4 @@ def parse_input(file):
 
 entry = parse_input(FILE)
 count = len([digit for digit in entry if len(digit) in [2, 4, 3, 7]]) # 1 4 7 8
-print(f'count {count}')
+print(f'result: {count}')
