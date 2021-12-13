@@ -55,9 +55,10 @@ def print_fold(dots):
         row = ''
         for j in range(max_x+1):
             if (j, i) in dots:
-                row += '#'
+                row += '##'
             else:
-                row += ' '
+                row += '  '
+        print(row)
         print(row)
 
 
