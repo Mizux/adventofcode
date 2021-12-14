@@ -21,51 +21,67 @@ digraph Hint {
   CC [label="CC: 0"];
   CN [label="CN: 0"];
 
+  // CH -> B
   CH -> CB;
-  CH -> HB;
+  CH -> BH;
 
+  // HH -> N
   HH -> HN;
   HH -> NH;
 
+  // CB -> H
   CB -> CH;
   CB -> HB;
 
+  // NH -> C
   NH -> NC;
   NH -> CH;
 
+  // HB -> C
   HB -> HC;
   HB -> CB;
 
+  // HC -> B
   HC -> HB;
   HC -> BC;
 
+  // HN -> C
   HN -> HC;
   HN -> CN;
 
+  // NN -> C
   NN -> NC;
   NN -> CN;
 
+  // BH -> H
   BH -> BH;
   BH -> HH;
 
+  // NC -> B
   NC -> NB;
   NC -> BC;
 
+  // NB -> B
   NB -> NB;
   NB -> BB;
 
+  // BN -> B
   BN -> BB;
   BN -> BN;
 
+  // BB -> N
   BB -> BN;
   BB -> NB;
 
+  // BC -> B
   BC -> BB;
   BC -> BC;
 
+  // CC -> N
   CC -> CN;
   CC -> NC;
 
+  // CN -> C
   CN -> CC;
   CN -> CN;
 }
