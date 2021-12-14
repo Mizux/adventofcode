@@ -22,67 +22,67 @@ digraph Hint {
   CN [label="CN: 0"];
 
   // CH -> B
-  CH -> CB;
-  CH -> BH;
+  CH -> CB [label=".B"];
+  CH -> BH [label="B."];
 
   // HH -> N
-  HH -> HN;
-  HH -> NH;
+  HH -> HN [label=".N"];
+  HH -> NH [label="N."];
 
   // CB -> H
-  CB -> CH;
-  CB -> HB;
+  CB -> CH [label=".H"];
+  CB -> HB [label="H."];
 
   // NH -> C
-  NH -> NC;
-  NH -> CH;
+  NH -> NC [label=".C"];
+  NH -> CH [label="C. "];
 
   // HB -> C
-  HB -> HC;
-  HB -> CB;
+  HB -> HC [label=".C"];
+  HB -> CB [label="C."];
 
   // HC -> B
-  HC -> HB;
-  HC -> BC;
+  HC -> HB [label=".B"];
+  HC -> BC [label="B."];
 
   // HN -> C
-  HN -> HC;
-  HN -> CN;
+  HN -> HC [label=".C"];
+  HN -> CN [label="C."];
 
   // NN -> C
-  NN -> NC;
-  NN -> CN;
+  NN -> NC [label=".C"];
+  NN -> CN [label="C."];
 
   // BH -> H
-  BH -> BH;
-  BH -> HH;
+  BH -> BH [label=".H"];
+  BH -> HH [label="H."];
 
   // NC -> B
-  NC -> NB;
-  NC -> BC;
+  NC -> NB [label=".B"];
+  NC -> BC [label="B."];
 
   // NB -> B
-  NB -> NB;
-  NB -> BB;
+  NB -> NB [label=".B"];
+  NB -> BB [label="B."];
 
   // BN -> B
-  BN -> BB;
-  BN -> BN;
+  BN -> BB [label=".B"];
+  BN -> BN [label="B."];
 
   // BB -> N
-  BB -> BN;
-  BB -> NB;
+  BB -> BN [label=".N"];
+  BB -> NB [label="N."];
 
   // BC -> B
-  BC -> BB;
-  BC -> BC;
+  BC -> BB [label=".B"];
+  BC -> BC [label="B."];
 
   // CC -> N
-  CC -> CN;
-  CC -> NC;
+  CC -> CN [label=".N"];
+  CC -> NC [label="N."];
 
   // CN -> C
-  CN -> CC;
-  CN -> CN;
+  CN -> CC [label=".C"];
+  CN -> CN [label="C."];
 }
 @enddot
