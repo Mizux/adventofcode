@@ -1,0 +1,72 @@
+@startdot
+digraph Hint {
+  //rankdir=BT;
+  //rankdir=TD;
+  rankdir=LR;
+  node [shape=cylinder, style="rounded,filled", color=black, fillcolor=royalblue];
+  CH [label="CH: 0"];
+  HH [label="HH: 0"];
+  CB [label="CB: 1"];
+  NH [label="NH: 0"];
+  HB [label="HB: 0"];
+  HC [label="HC: 0"];
+  HN [label="HN: 0"];
+  NN [label="NN: 1"];
+  BH [label="BH: 0"];
+  NC [label="NC: 1"];
+  NB [label="NB: 0"];
+  BN [label="BN: 0"];
+  BB [label="BB: 0"];
+  BC [label="BC: 0"];
+  CC [label="CC: 0"];
+  CN [label="CN: 0"];
+
+  CH -> CB;
+  CH -> HB;
+
+  HH -> HN;
+  HH -> NH;
+
+  CB -> CH;
+  CB -> HB;
+
+  NH -> NC;
+  NH -> CH;
+
+  HB -> HC;
+  HB -> CB;
+
+  HC -> HB;
+  HC -> BC;
+
+  HN -> HC;
+  HN -> CN;
+
+  NN -> NC;
+  NN -> CN;
+
+  BH -> BH;
+  BH -> HH;
+
+  NC -> NB;
+  NC -> BC;
+
+  NB -> NB;
+  NB -> BB;
+
+  BN -> BB;
+  BN -> BN;
+
+  BB -> BN;
+  BB -> NB;
+
+  BC -> BB;
+  BC -> BC;
+
+  CC -> CN;
+  CC -> NC;
+
+  CN -> CC;
+  CN -> CN;
+}
+@enddot
