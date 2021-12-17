@@ -8,7 +8,7 @@ FILE='test_s6.txt' # in: F600BC2D8F sol: 0
 FILE='test_s7.txt' # in: 9C005AC2F8F0 sol: 0
 FILE='test_s8.txt' # in: 9C0141080250320F1802104A08 sol: 1
 
-FILE='input.txt' # sol: 1549026293044
+FILE='input.txt' # sol: 1549026292886
 
 
 def parse_input(file):
