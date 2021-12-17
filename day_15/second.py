@@ -70,12 +70,8 @@ def dijkstra(board, start):
 
 repeat = 5
 board = parse_input(FILE, repeat)
-#print('in:')
-#print_board(board)
 compute_board(board, repeat)
-#print('out:')
 #print_board(board)
-
 distance = dijkstra(board, (0,0))
 end = (len(board)-1, len(board[0])-1)
 print(f'result {distance[end]}')
